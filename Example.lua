@@ -16,6 +16,7 @@ local Window = Library:CreateWindow({
 	-- Set Center to true if you want the menu to appear in the center
 	-- Set AutoShow to true if you want the menu to appear when it is created
 	-- Set Resizable to true if you want to have in-game resizable Window
+	-- Set MobileButtonsSide to "Left" or "Right" if you want the ui toggle & lock buttons to be on the left or right side of the window
 	-- Set ShowCustomCursor to false if you don't want to use the Linoria cursor
 	-- NotifySide = Changes the side of the notifications (Left, Right) (Default value = Left)
 	-- Position and Size are also valid options here
@@ -34,12 +35,27 @@ local Window = Library:CreateWindow({
 -- I strongly recommend decoupling UI code from logic code. i.e. Create your UI elements FIRST, and THEN setup :OnChanged functions later.
 
 -- You do not have to set your tabs & groups up this way, just a prefrence.
+-- You can find more icons in https://lucide.dev/
 local Tabs = {
 	-- Creates a new tab titled Main
 	Main = Window:AddTab("Main", "user"),
 	Key = Window:AddKeyTab("Key System"),
 	["UI Settings"] = Window:AddTab("UI Settings", "settings"),
 }
+
+
+--[[
+Example of how to add a warning box to a tab; the title AND text support rich text formatting.
+
+local WarningTab = Tabs["UI Settings"]:AddTab("Warning Box", "user")
+
+WarningTab:UpdateWarningBox({
+	Visible = true,
+	Title = "Warning",
+	Text = "This is a warning box!",
+})
+
+]]
 
 -- Groupbox and Tabbox inherit the same functions
 -- except Tabboxes you have to call the functions on a tab (Tabbox:AddTab(name))
